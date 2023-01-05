@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hair_heist/app/ui/home/view/home_page.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -23,9 +25,11 @@ class SplashPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => HomePage());
+                    },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.black,
                     ),
                     child: Text(
                       'sign-in with email',

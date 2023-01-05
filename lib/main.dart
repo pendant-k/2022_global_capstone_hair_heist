@@ -24,15 +24,12 @@ class Home extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(412, 892),
         builder: (context, child) {
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              getPages: AppPages.pages,
-              // first page to render
-              initialRoute: Routes.SPLASH,
-              // theme: appThemeData,
-            ),
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            getPages: AppPages.pages,
+            // first page to render
+            initialRoute: Routes.SPLASH,
+            // theme: appThemeData,
           );
         });
   }
