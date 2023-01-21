@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/ui/home/view/home_page.dart';
 
 class SplashPage extends StatelessWidget {
@@ -8,45 +9,67 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Palette.mainColor,
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          height: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
             children: [
-              Text(
-                'SPLASH SCREEN',
-                style: TextStyle(
-                  color: Colors.white,
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                      ),
+                      Text(
+                        'Hair Heist',
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => HomePage());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: Text(
-                      'sign-in with email',
-                      style: TextStyle(
-                        color: Colors.white,
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => HomePage());
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+                          alignment: Alignment.center,
+                          child: Text('Sign-in with Email'),
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 40,
+                      )
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('sign-in with google'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('sign-in with apple account'),
-                  )
-                ],
+                ),
               )
             ],
           ),

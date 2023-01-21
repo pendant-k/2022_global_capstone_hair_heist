@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // dependency injection
+    // dependency injection - Home Index State
     final _controller = Get.put(HomeIndexController());
 
     return SafeArea(
@@ -54,10 +54,10 @@ class HomePage extends StatelessWidget {
                     margin: EdgeInsets.only(bottom: 7),
                     child: Icon(
                       Icons.search,
-                      size: 20.0,
+                      size: 20.w,
                     ),
                   ),
-                  label: 'Explore',
+                  label: 'Search',
                   backgroundColor: Colors.white,
                 ),
                 BottomNavigationBarItem(
@@ -68,18 +68,18 @@ class HomePage extends StatelessWidget {
                       size: 20.w,
                     ),
                   ),
-                  label: 'Places',
+                  label: 'Explore',
                   backgroundColor: Colors.white,
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
                     margin: EdgeInsets.only(bottom: 7),
                     child: Icon(
-                      Icons.settings,
+                      Icons.person,
                       size: 20.w,
                     ),
                   ),
-                  label: 'Settings',
+                  label: 'MyPage',
                   backgroundColor: Colors.white,
                 ),
               ],

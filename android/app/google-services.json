@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904431152894",
+    "project_id": "hair-heist",
+    "storage_bucket": "hair-heist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904431152894:android:a0e2cc0d675762f29bffaf",
+        "android_client_info": {
+          "package_name": "com.example.hair_heist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904431152894-07luvto1s8dun8k3hr1d6c3k7u7qcie6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBus3dPwjRRFSKHwbmIT9RS5btv-UIOwLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904431152894-07luvto1s8dun8k3hr1d6c3k7u7qcie6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
