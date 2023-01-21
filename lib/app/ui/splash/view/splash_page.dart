@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hair_heist/app/config/palette.dart';
-import 'package:hair_heist/app/ui/home/view/home_page.dart';
+import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -51,7 +51,7 @@ class SplashPage extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.to(() => HomePage());
+                          Get.to(() => MainNavigationPage());
                         },
                         child: Container(
                           width: double.infinity,

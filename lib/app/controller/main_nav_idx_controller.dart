@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class HomeIndexController extends GetxController {
+class MainNavIndexController extends GetxController {
   var pageIdx = 0.obs;
 
   void changeTabIndex(int index) {

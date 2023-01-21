@@ -1,4 +1,5 @@
 import 'package:get/route_manager.dart';
+import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 import 'package:hair_heist/app/ui/splash/splash.dart';
 part './app_routes.dart';
 
@@ -11,6 +12,10 @@ class AppPages {
     GetPage(
       name: Routes.SPLASH,
       page: () => SplashPage(),
-    )
+    ),
+    GetPage(
+      name: Routes.MAINNAVIGATION,
+      page: () => MainNavigationPage(),
+    ),
   ];
 }

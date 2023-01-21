@@ -1,92 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:hair_heist/app/config/palette.dart';
 
-import 'package:hair_heist/app/controller/home_index_controller.dart';
+// configs
+import 'package:hair_heist/app/config/palette.dart';
+import 'package:hair_heist/app/config/text_styles.dart';
+
+import '../widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  final TextStyle unselectedLabelStyle = TextStyle(
-      color: Colors.white.withOpacity(0.5),
-      fontWeight: FontWeight.w500,
-      fontSize: 12);
-
-  final TextStyle selectedLabelStyle =
-      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // dependency injection - Home Index State
-    final _controller = Get.put(HomeIndexController());
-
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: Obx(
-          () => SizedBox(
-            height: 80.w,
-            child: BottomNavigationBar(
-              showUnselectedLabels: true,
-              showSelectedLabels: true,
-              onTap: (idx) {
-                _controller.changeTabIndex(idx);
-              },
-              currentIndex: _controller.pageIdx.value,
-              backgroundColor: Colors.white,
-              unselectedItemColor: Colors.black.withOpacity(0.5),
-              selectedItemColor: Palette.mainColor,
-              unselectedLabelStyle: unselectedLabelStyle,
-              selectedLabelStyle: selectedLabelStyle,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 7),
-                    child: Icon(
-                      Icons.home,
-                      size: 20.w,
-                    ),
+    return Container(
+        width: double.infinity,
+        padding: EdgeInsets.fromLTRB(20.w, 39.w, 20.w, 0),
+        child: ListView(
+          children: [
+            Text(
+              'Let\'s find cool hair styles',
+              style: GlobalStyle.primaryText.copyWith(
+                fontWeight: FontWeight.w500,
+                fontSize: 24.sp,
+              ),
+            ),
+            SizedBox(height: 15.w),
+            HomeSearchBtn(
+              onTap: () {},
+            ),
+            SizedBox(height: 15.w),
+            HomeBanner(),
+            SizedBox(height: 30.w),
+            Row(
+              children: [
+                Text(
+                  'What\'s new',
+                  style: GlobalStyle.primaryText.copyWith(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w500,
                   ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 7),
-                    child: Icon(
-                      Icons.search,
-                      size: 20.w,
-                    ),
-                  ),
-                  label: 'Search',
-                  backgroundColor: Colors.white,
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 7),
-                    child: Icon(
-                      Icons.location_history,
-                      size: 20.w,
-                    ),
-                  ),
-                  label: 'Explore',
-                  backgroundColor: Colors.white,
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 7),
-                    child: Icon(
-                      Icons.person,
-                      size: 20.w,
-                    ),
-                  ),
-                  label: 'MyPage',
-                  backgroundColor: Colors.white,
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
+            //Images
+          ],
+        ));
   }
 }
+
+
+// TODO: Home Banner position

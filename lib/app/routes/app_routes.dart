@@ -4,5 +4,5 @@ part of './app_pages.dart';
 abstract class Routes {
   // for const var, use upper case
   static const SPLASH = '/';
-  static const HOME = '/home';
+  static const MAINNAVIGATION = '/main';
 }
