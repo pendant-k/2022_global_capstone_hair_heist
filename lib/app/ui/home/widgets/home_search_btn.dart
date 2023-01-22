@@ -17,7 +17,7 @@ class HomeSearchBtn extends StatelessWidget {
       shadowColor: Colors.black.withOpacity(0.5),
       elevation: 5,
       borderRadius: BorderRadius.circular(15.w),
-      color: Colors.white,
+      color: Colors.grey[300],
       child: GestureDetector(
         onTap: onTap,
         child: Container(

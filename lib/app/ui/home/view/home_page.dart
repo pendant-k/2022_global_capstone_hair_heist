@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/text_styles.dart';
 
 import '../widgets/widgets.dart';
+import 'package:hair_heist/app/ui/search/view/search_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,7 +28,11 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 15.w),
             HomeSearchBtn(
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  () => SearchPage(),
+                );
+              },
             ),
             SizedBox(height: 15.w),
             HomeBanner(),
