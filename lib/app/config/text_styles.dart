@@ -6,6 +6,7 @@ import 'package:hair_heist/app/config/palette.dart';
 class GlobalStyle {
   // text styles
   static final primaryText = TextStyle(
+    // fontFamily: 'NotoSans',
     color: Palette.fontPrimaryColor,
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,

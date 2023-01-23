@@ -15,10 +15,11 @@ class HomeSearchBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       shadowColor: Colors.black.withOpacity(0.5),
-      elevation: 5,
+      elevation: 10,
       borderRadius: BorderRadius.circular(15.w),
       color: Colors.grey[300],
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: onTap,
         child: Container(
           width: double.infinity,
@@ -34,7 +35,7 @@ class HomeSearchBtn extends StatelessWidget {
                 color: Palette.mainColor,
               ),
               SizedBox(width: 15.w),
-              Text('Search now')
+              Text('Search now'),
             ],
           ),
         ),

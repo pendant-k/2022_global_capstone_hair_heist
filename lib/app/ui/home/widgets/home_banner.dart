@@ -16,7 +16,9 @@ class HomeBanner extends StatelessWidget {
       height: 80.w,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color: Palette.mainColor, borderRadius: BorderRadius.circular(15.w)),
+        color: Palette.mainColor,
+        borderRadius: BorderRadius.circular(15.w),
+      ),
       child: Text(
         'Welcome to hair heist',
         style: GlobalStyle.whiteText.copyWith(

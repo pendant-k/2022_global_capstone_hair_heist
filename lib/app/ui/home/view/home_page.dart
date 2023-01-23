@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // configs
-import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/text_styles.dart';
 
 import '../widgets/widgets.dart';
@@ -49,10 +48,15 @@ class HomePage extends StatelessWidget {
               ],
             ),
             //Images
+            Wrap(
+              spacing: 10.w,
+              runSpacing: 10.w,
+              children: [],
+            )
           ],
         ));
   }
 }
 
-
 // TODO: Home Banner position
+// TODO:

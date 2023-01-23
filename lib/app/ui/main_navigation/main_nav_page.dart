@@ -30,7 +30,7 @@ class MainNavigationPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Palette.backgroundColor,
+        backgroundColor: Color.fromRGBO(247, 247, 247, 1),
         bottomNavigationBar: Obx(
           () => SizedBox(
             height: 80.w,
