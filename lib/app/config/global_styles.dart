@@ -23,4 +23,9 @@ class GlobalStyle {
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,
   );
+
+  static final inputText = TextStyle(
+    color: Palette.fontPrimaryColor,
+    fontSize: 16.sp,
+  );
 }

@@ -10,15 +10,28 @@ class AppTheme {
     primarySwatch: CreateColors.generateMaterialColor(Palette.mainColor),
     scaffoldBackgroundColor: Palette.backgroundColor,
     hintColor: Palette.fontSecondaryColor,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+      padding: EdgeInsets.symmetric(vertical: 20.w),
+      alignment: Alignment.center,
+      textStyle: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.w),
+      ),
+    )),
     inputDecorationTheme: InputDecorationTheme(
         contentPadding: EdgeInsets.only(
-          top: 11.w,
-          bottom: 11.w,
+          top: 20.w,
+          bottom: 20.w,
           left: 15.w,
           right: 15.w,
         ),
         hintStyle: GlobalStyle.primaryText.copyWith(
-          color: Palette.grayDF,
+          color: Palette.fontSecondaryColor,
           fontSize: 16.sp,
         ),
         enabledBorder: OutlineInputBorder(

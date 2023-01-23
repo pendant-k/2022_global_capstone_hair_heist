@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:hair_heist/app/config/palette.dart';
-import 'package:hair_heist/app/config/global_styles.dart';
 import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 import 'package:hair_heist/app/ui/sign_in/view/sign_in_page.dart';
+
+import '../widgets/widgets.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -12,6 +14,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Palette.mainColor,
       body: SafeArea(
         child: Container(
@@ -75,41 +78,6 @@ class SplashPage extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class LoginButton extends StatelessWidget {
-  const LoginButton({
-    Key? key,
-    required this.onTap,
-    required this.text,
-    this.btnColor = Colors.white,
-    this.textColor = Palette.fontPrimaryColor,
-  }) : super(key: key);
-
-  final VoidCallback onTap;
-  final String text;
-  final Color btnColor;
-  final Color textColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: btnColor,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: GlobalStyle.primaryText.copyWith(color: textColor),
         ),
       ),
     );
