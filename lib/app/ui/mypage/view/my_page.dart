@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // configs
 import 'package:hair_heist/app/config/palette.dart';
-import 'package:hair_heist/app/config/text_styles.dart';
+import 'package:hair_heist/app/config/global_styles.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({super.key});

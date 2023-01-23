@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // configs
-import 'package:hair_heist/app/config/text_styles.dart';
+import 'package:hair_heist/app/config/global_styles.dart';
 
 import '../widgets/widgets.dart';
 import 'package:hair_heist/app/ui/search/view/search_page.dart';

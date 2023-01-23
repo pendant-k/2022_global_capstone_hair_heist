@@ -6,7 +6,7 @@ import 'package:hair_heist/app/ui/home/widgets/home_search_btn.dart';
 
 // configs
 import 'package:hair_heist/app/config/palette.dart';
-import 'package:hair_heist/app/config/text_styles.dart';
+import 'package:hair_heist/app/config/global_styles.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});

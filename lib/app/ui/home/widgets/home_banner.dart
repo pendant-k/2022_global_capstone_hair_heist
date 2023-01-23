@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../config/palette.dart';
-import '../../../config/text_styles.dart';
+import '../../../config/global_styles.dart';
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({
