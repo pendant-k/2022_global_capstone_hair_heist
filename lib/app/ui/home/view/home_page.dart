@@ -47,12 +47,63 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            //Images
+            SizedBox(
+              height: 20.w,
+            ),
             Wrap(
-              spacing: 10.w,
-              runSpacing: 10.w,
-              children: [],
-            )
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0,
+              children: [
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                Container(
+                  width: 180.w,
+                  height: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ],
+            ),
           ],
         ));
   }
