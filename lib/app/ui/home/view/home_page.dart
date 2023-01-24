@@ -7,6 +7,7 @@ import 'package:hair_heist/app/config/global_styles.dart';
 
 import '../widgets/widgets.dart';
 import 'package:hair_heist/app/ui/search/view/search_page.dart';
+import 'package:hair_heist/app/ui/designer_info/view/desinger_info_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -54,13 +55,20 @@ class HomePage extends StatelessWidget {
               spacing: 8.0, // gap between adjacent chips
               runSpacing: 4.0,
               children: [
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
+                GestureDetector(
+                  child: Container(
+                    width: 180.w,
+                    height: 180.w,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
+                  onTap: () {
+                    Get.to(
+                      () => DesingerInfoPage(),
+                    );
+                  },
                 ),
                 Container(
                   width: 180.w,
