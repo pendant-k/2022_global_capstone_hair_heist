@@ -8,6 +8,7 @@ import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
 
 import '../widgets/widgets.dart';
 import 'package:hair_heist/app/ui/search/view/search_page.dart';
+import 'package:hair_heist/app/ui/designer_info/view/desinger_info_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
