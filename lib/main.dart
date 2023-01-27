@@ -33,13 +33,23 @@ class Home extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(412, 892),
         builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            getPages: AppPages.pages,
-            // first page to render
-            home: SplashPage(),
-            // initialRoute: Routes.SPLASH,
-            theme: AppTheme.globalTheme,
+          return GestureDetector(
+            onTap: () {
+              // keyboard dismiss
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus &&
+                  currentFocus.focusedChild != null) {
+                currentFocus.focusedChild!.unfocus();
+              }
+            },
+            child: GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              getPages: AppPages.pages,
+              // first page to render
+              home: SplashPage(),
+              // initialRoute: Routes.SPLASH,
+              theme: AppTheme.globalTheme,
+            ),
           );
         });
   }
