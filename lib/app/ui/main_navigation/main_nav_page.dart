@@ -9,6 +9,7 @@ import 'package:hair_heist/app/config/palette.dart';
 // controllers
 import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
 import 'package:hair_heist/app/ui/home/view/home_page.dart';
+import 'package:hair_heist/app/ui/like/view/like_page.dart';
 import 'package:hair_heist/app/ui/mypage/view/my_page.dart';
 import 'package:hair_heist/app/ui/search/view/search_page.dart';
 
@@ -27,7 +28,7 @@ class MainNavigationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // dependency injection - Home Index State
     final _controller = Get.put(MainNavIndexController());
-    final _mainPages = [HomePage(), SearchPage(), MyPage(), MyPage()];
+    final _mainPages = [HomePage(), SearchPage(), LikePage(), MyPage()];
 
     return SafeArea(
       child: Scaffold(
