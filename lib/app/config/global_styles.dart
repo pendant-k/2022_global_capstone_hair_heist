@@ -28,4 +28,9 @@ class GlobalStyle {
     color: Palette.fontPrimaryColor,
     fontSize: 16.sp,
   );
+
+  static final inputHintText = TextStyle(
+    color: Palette.fontSecondaryColor,
+    fontSize: 16.sp,
+  );
 }

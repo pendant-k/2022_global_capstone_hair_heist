@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:hair_heist/app/ui/home/widgets/home_search_btn.dart';
-
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
@@ -18,18 +16,24 @@ class SearchPage extends StatelessWidget {
         color: Colors.white,
         width: double.infinity,
         padding: EdgeInsets.fromLTRB(20.w, 39.w, 20.w, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             SizedBox(
               height: 42.w,
             ),
-            HomeSearchBtn(
-              onTap: () {
-                Get.to(
-                  () => SearchPage(),
-                );
-              },
+            Material(
+              color: Colors.white,
+              elevation: 10,
+              shadowColor: Colors.black.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(15.w),
+              child: TextField(
+                autocorrect: false,
+                autofocus: true,
+                style: GlobalStyle.inputText,
+                decoration: InputDecoration(
+                  hintText: 'Search by keyword',
+                ),
+              ),
             ),
             SizedBox(
               height: 20.w,
@@ -44,60 +48,32 @@ class SearchPage extends StatelessWidget {
             SizedBox(
               height: 20.w,
             ),
+            // Get previous keywords -> Get storage?
             Wrap(
-              spacing: 8.0, // gap between adjacent chips
-              runSpacing: 4.0,
+              spacing: 10.w, // gap between adjacent chips
+              runSpacing: 10.w,
               children: [
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
+                Chip(
+                  backgroundColor: Colors.white,
+                  side: BorderSide(
+                    color: Palette.grayE8,
+                    width: 1.5,
                   ),
-                ),
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
+                  label: Text(
+                    'recent keyword',
+                    style: GlobalStyle.primaryText,
                   ),
-                ),
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                Container(
-                  width: 180.w,
-                  height: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
+                  onDeleted: () {
+                    print('delete this!');
+                  },
+                  deleteIcon: Icon(
+                    Icons.cancel_outlined,
+                    size: 20.w,
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 100.w),
           ],
         ),
       ),
@@ -106,3 +82,4 @@ class SearchPage extends StatelessWidget {
 }
 
 // TODO: Home Banner position
+// TODO: Hint text 내용 수정 
