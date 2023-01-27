@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hair_heist/app/config/global_styles.dart';
 
 import '../../../config/palette.dart';
 
@@ -17,7 +18,7 @@ class HomeSearchBtn extends StatelessWidget {
       shadowColor: Colors.black.withOpacity(0.5),
       elevation: 10,
       borderRadius: BorderRadius.circular(15.w),
-      color: Colors.grey[300],
+      color: Colors.white,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
@@ -35,7 +36,10 @@ class HomeSearchBtn extends StatelessWidget {
                 color: Palette.mainColor,
               ),
               SizedBox(width: 15.w),
-              Text('Search now'),
+              Text(
+                'Search now',
+                style: GlobalStyle.inputHintText,
+              ),
             ],
           ),
         ),

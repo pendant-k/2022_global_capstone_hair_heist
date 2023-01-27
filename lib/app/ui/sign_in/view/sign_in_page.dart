@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
+import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 import 'package:hair_heist/app/ui/sign_in/controller/sign_in_controller.dart';
 
 import 'sign_up_page.dart';
@@ -71,6 +72,7 @@ class SignInPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // controller -> sign in
+                          Get.to(() => MainNavigationPage());
                         },
                         child: Text('Sign In'),
                       ),
@@ -104,3 +106,5 @@ class SignInPage extends StatelessWidget {
     );
   }
 }
+
+// 최상단에 App Logo 추가
