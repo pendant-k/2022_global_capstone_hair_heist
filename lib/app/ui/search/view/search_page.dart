@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
+import 'package:hair_heist/app/ui/search/view/search_result_page.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -33,6 +34,11 @@ class SearchPage extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Search by keyword',
                 ),
+                onSubmitted: (value) {
+                  if (value.trim().isNotEmpty) {
+                    Get.to(() => SearchResultPage());
+                  }
+                },
               ),
             ),
             SizedBox(
@@ -83,3 +89,4 @@ class SearchPage extends StatelessWidget {
 
 // TODO: Home Banner position
 // TODO: Hint text 내용 수정 
+// Recent keywords -> Get storage
