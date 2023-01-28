@@ -32,6 +32,14 @@ class SearchPage extends StatelessWidget {
                 autofocus: true,
                 style: GlobalStyle.inputText,
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 20.w,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    size: 25.w,
+                  ),
                   hintText: 'Search by keyword',
                 ),
                 onSubmitted: (value) {

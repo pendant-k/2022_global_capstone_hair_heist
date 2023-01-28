@@ -34,7 +34,24 @@ class SearchResultPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.w),
-                TextField(),
+                TextField(
+                  autocorrect: false,
+                  style: GlobalStyle.inputText,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 20.w,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      size: 25.w,
+                    ),
+                    hintText: 'Search by keyword',
+                  ),
+                  onSubmitted: (value) {
+                    print(value);
+                  },
+                ),
               ],
             ),
           ),
@@ -61,6 +78,7 @@ class SearchResultPage extends StatelessWidget {
                     print('refresh search result list');
                   },
                   child: GridView.builder(
+                    itemCount: 5,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1 / 1.5,
@@ -68,7 +86,7 @@ class SearchResultPage extends StatelessWidget {
                       crossAxisSpacing: 10.w,
                     ),
                     itemBuilder: (context, idx) => Material(
-                      elevation: 5,
+                      elevation: 3,
                       child: Container(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
