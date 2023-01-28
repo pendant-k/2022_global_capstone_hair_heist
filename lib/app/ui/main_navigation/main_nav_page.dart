@@ -10,6 +10,7 @@ import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
 import 'package:hair_heist/app/ui/home/view/home_page.dart';
 import 'package:hair_heist/app/ui/like/view/like_page.dart';
+import 'package:hair_heist/app/ui/mypage/view/designer_my_page.dart';
 import 'package:hair_heist/app/ui/mypage/view/my_page.dart';
 import 'package:hair_heist/app/ui/search/view/search_page.dart';
 

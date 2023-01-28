@@ -7,8 +7,8 @@ import 'package:hair_heist/app/config/global_styles.dart';
 
 import '../widgets/widgets.dart';
 
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+class DesingerMyPage extends StatelessWidget {
+  const DesingerMyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,9 @@ class MyPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: ListView(
                     children: [
-                      SizedBox(height: 10.w),
+                      SizedBox(
+                        height: 10.w,
+                      ),
                       Row(
                         children: [
                           MyPageListTitle(data: 'Activity'),
@@ -62,7 +64,7 @@ class MyPage extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                'User',
+                                'Designer',
                                 style: GlobalStyle.primaryText.copyWith(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 20.sp,
@@ -77,7 +79,7 @@ class MyPage extends StatelessWidget {
                       ),
                       MyPageItem(
                         icon: Icons.person_outline,
-                        itemLabel: 'My Hair',
+                        itemLabel: 'My Works',
                         onTap: () {},
                       ),
                       Divider(
@@ -94,8 +96,8 @@ class MyPage extends StatelessWidget {
                         thickness: 1,
                       ),
                       MyPageItem(
-                        icon: Icons.keyboard_double_arrow_up_outlined,
-                        itemLabel: 'Register as Designer',
+                        icon: Icons.keyboard_double_arrow_down_outlined,
+                        itemLabel: 'Deregister as User',
                         onTap: () {},
                       ),
                       Divider(
