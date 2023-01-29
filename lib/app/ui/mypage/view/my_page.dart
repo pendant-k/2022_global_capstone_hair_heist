@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // configs
@@ -23,12 +24,45 @@ class MyPage extends StatelessWidget {
                 20.w,
                 40.w,
                 20.w,
-                40.w,
+                20.w,
               ),
               child: MyPageHeader(
                 onTap: () {},
               ),
             ),
+            !true
+                ? SizedBox(
+                    height: 20.w,
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Container(
+                      width: double.infinity,
+                      height: 60.w,
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Designer Profile',
+                            style: GlobalStyle.primaryText.copyWith(
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                          Icon(
+                            Icons.chevron_right,
+                            size: 25.w,
+                            color: Palette.fontSecondaryColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+            SizedBox(height: 20.w),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -47,29 +81,29 @@ class MyPage extends StatelessWidget {
                       Row(
                         children: [
                           MyPageListTitle(data: 'Activity'),
-                          SizedBox(
-                            width: 30.w,
-                          ),
-                          Container(
-                            width: 120.w,
-                            height: 50.w,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(0, 0, 0, 1),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'User',
-                                style: GlobalStyle.primaryText.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20.sp,
-                                ),
-                              ),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: 30.w,
+                          // ),
+                          // Container(
+                          //   width: 120.w,
+                          //   height: 50.w,
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(
+                          //       color: Color.fromRGBO(0, 0, 0, 1),
+                          //       width: 2,
+                          //     ),
+                          //     borderRadius: BorderRadius.circular(10),
+                          //   ),
+                          //   child: Center(
+                          //     child: Text(
+                          //       'User',
+                          //       style: GlobalStyle.primaryText.copyWith(
+                          //         fontWeight: FontWeight.w500,
+                          //         fontSize: 20.sp,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       SizedBox(

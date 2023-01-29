@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hair_heist/app/config/palette.dart';
 
 import '../../../config/global_styles.dart';
 
@@ -33,8 +34,8 @@ class MyPageItem extends StatelessWidget {
             Text(
               itemLabel,
               style: GlobalStyle.primaryText.copyWith(
-                fontWeight: FontWeight.w500,
-                fontSize: 20.sp,
+                fontWeight: FontWeight.w400,
+                fontSize: 16.sp,
               ),
             ),
           ],
