@@ -86,13 +86,12 @@ class ImageBox extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       color: Colors.white,
       child: Container(
-        width: 180.w,
-        height: 180.w,
-        alignment: Alignment.center,
-        child: Text(
-          'Image Box',
-        ),
-      ),
+          width: 180.w,
+          height: 180.w,
+          child: Image.asset(
+            'assets/images/dummy_img.png',
+            fit: BoxFit.fill,
+          )),
     );
   }
 }

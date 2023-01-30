@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:hair_heist/app/ui/detail/view/detail_page.dart';
 
 import '../../../config/global_styles.dart';
 import '../../../config/palette.dart';
@@ -78,36 +79,75 @@ class SearchResultPage extends StatelessWidget {
                     print('refresh search result list');
                   },
                   child: GridView.builder(
-                    itemCount: 5,
+                    itemCount: 10,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1 / 1.5,
                       mainAxisSpacing: 10.w,
                       crossAxisSpacing: 10.w,
                     ),
-                    itemBuilder: (context, idx) => Material(
-                      elevation: 3,
-                      child: Container(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: 180.w,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(height: 10.w),
-                            Text('hair style name'),
-                          ],
-                        ),
-                      ),
-                    ),
+                    itemBuilder: (context, idx) => ResultItem(),
                   ),
                 ),
               )
             ],
           )),
+    );
+  }
+}
+
+class ResultItem extends StatelessWidget {
+  const ResultItem({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Get to detail page with hairstyle model
+        Get.to(() => DetailPage());
+      },
+      child: Material(
+        color: Colors.white,
+        elevation: 3,
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 180.w,
+                child: Image.asset(
+                  'assets/images/dummy_img.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              SizedBox(height: 10.w),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'hair style name',
+                      style: GlobalStyle.primaryText.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.sp,
+                      ),
+                    ),
+                    Text(
+                      'designer',
+                      style: GlobalStyle.secondaryText,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

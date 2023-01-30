@@ -50,7 +50,7 @@ class SignInPage extends StatelessWidget {
                       style: GlobalStyle.inputText,
                       obscureText: _controller.obscure.value,
                       onChanged: (value) {
-                        _controller.updateEmail(value);
+                        _controller.updatePassword(value);
                       },
                       decoration: InputDecoration(
                         hintText: 'password',
@@ -72,7 +72,8 @@ class SignInPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // controller -> sign in
-                          Get.to(() => MainNavigationPage());
+                          _controller.signIn();
+                          // Get.to(() => MainNavigationPage());
                         },
                         child: Text('Sign In'),
                       ),

@@ -29,6 +29,13 @@
             {
               "client_id": "904431152894-07luvto1s8dun8k3hr1d6c3k7u7qcie6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "904431152894-m9rdpirgt85j7uc4gq5fs73gjh3giuos.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hairHeist"
+              }
             }
           ]
         }

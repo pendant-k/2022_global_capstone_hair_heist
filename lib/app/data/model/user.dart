@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-class User {
+class UserData {
   // Unique id for each user
   final String uuid;
-  // User nickname
+  // UserData nickname
   final String name;
   final String email;
   final String password;
@@ -14,7 +14,8 @@ class User {
   final bool isVerified;
   final String? licenseImgUrl;
   final String? introduce;
-  User({
+
+  UserData({
     required this.uuid,
     required this.name,
     required this.email,
@@ -26,7 +27,7 @@ class User {
     this.introduce,
   });
 
-  User copyWith({
+  UserData copyWith({
     String? uuid,
     String? name,
     String? email,
@@ -37,7 +38,7 @@ class User {
     String? licenseImgUrl,
     String? introduce,
   }) {
-    return User(
+    return UserData(
       uuid: uuid ?? this.uuid,
       name: name ?? this.name,
       email: email ?? this.email,
@@ -64,8 +65,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory UserData.fromMap(Map<String, dynamic> map) {
+    return UserData(
       uuid: map['uuid'] as String,
       name: map['name'] as String,
       email: map['email'] as String,
@@ -82,16 +83,16 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserData.fromJson(String source) =>
+      UserData.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'User(uuid: $uuid, name: $name, email: $email, password: $password, role: $role, profileImgUrl: $profileImgUrl, isVerified: $isVerified, licenseImgUrl: $licenseImgUrl, introduce: $introduce)';
+    return 'UserData(uuid: $uuid, name: $name, email: $email, password: $password, role: $role, profileImgUrl: $profileImgUrl, isVerified: $isVerified, licenseImgUrl: $licenseImgUrl, introduce: $introduce)';
   }
 
   @override
-  bool operator ==(covariant User other) {
+  bool operator ==(covariant UserData other) {
     if (identical(this, other)) return true;
 
     return other.uuid == uuid &&

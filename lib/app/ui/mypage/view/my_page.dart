@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
+import 'package:hair_heist/app/ui/mypage/controller/mypage_controller.dart';
 
 import '../widgets/widgets.dart';
 
@@ -13,6 +15,7 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(MyPageController());
     return SafeArea(
       child: Container(
         color: Palette.backgroundColor,
@@ -163,6 +166,7 @@ class MyPage extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             print('logout');
+                            _controller.signOut();
                           },
                           child: Text(
                             'Logout',

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 import 'package:hair_heist/app/ui/sign_in/view/sign_in_page.dart';
+import 'package:hair_heist/app/ui/splash/controller/splash_controller.dart';
 
 import '../widgets/widgets.dart';
 
@@ -13,6 +14,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SpalshController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Palette.mainColor,
