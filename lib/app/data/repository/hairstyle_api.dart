@@ -5,13 +5,14 @@ import 'package:http/http.dart' as http;
 // base Url -> server uri
 var baseUrl = 'http://localhost:5000/hairstyle';
 
-class HairStyleApiClient {
+class HairStylesRepository {
   final http.Client httpClient;
 
-  HairStyleApiClient({
+  HairStylesRepository({
     required this.httpClient,
   });
 
+  // Get one hair style data
   Future<HairStyle?> getHairStyleByUid(String uid) async {
     try {
       final _response = await httpClient.get(Uri.parse(baseUrl + '/$uid'));

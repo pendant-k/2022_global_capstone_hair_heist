@@ -1,10 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:hair_heist/app/data/repository/authentication.dart';
 import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 
 class SignInController extends GetxController {
+  late AuthRepository repo;
+
   @override
-  final _auth = FirebaseAuth.instance;
+  void onInit() {
+    super.onInit();
+    repo = AuthRepository(auth: FirebaseAuth.instance);
+  }
+
+  @override
   // email && password textfield
   final email = ''.obs;
   final password = ''.obs;
@@ -23,19 +31,24 @@ class SignInController extends GetxController {
     obscure.toggle();
   }
 
-  verify() {}
+  bool verify() {
+    return true;
+  }
 
   signIn() async {
-    try {
-      final _result = await _auth.signInWithEmailAndPassword(
-        email: email.value,
-        password: password.value,
-      );
-      Get.to(
-        () => MainNavigationPage(),
-      );
-    } catch (e) {
-      throw Exception(e);
+    final _isVerified = verify();
+    if (_isVerified) {
+      try {
+        final _result = await repo.signIn(email.value, password.value);
+        Get.to(
+          () => MainNavigationPage(),
+        );
+        Get.snackbar('Welcome Back', 'How are you today?');
+      } on Exception catch (e) {
+        print(e);
+      }
+    } else {
+      Get.snackbar('Error', 'Can not sign in correctly');
     }
   }
 }

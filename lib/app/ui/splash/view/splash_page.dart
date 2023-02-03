@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:hair_heist/app/config/palette.dart';
-import 'package:hair_heist/app/ui/main_navigation/main_nav_page.dart';
 import 'package:hair_heist/app/ui/sign_in/view/sign_in_page.dart';
 import 'package:hair_heist/app/ui/splash/controller/splash_controller.dart';
 
@@ -14,7 +13,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SpalshController());
+    final _controller = Get.put(SplashController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Palette.mainColor,
@@ -68,7 +67,7 @@ class SplashPage extends StatelessWidget {
                       LoginButton(
                         text: 'Guest account',
                         onTap: () {
-                          Get.to(() => MainNavigationPage());
+                          _controller.guestLogin();
                         },
                       ),
                       SizedBox(

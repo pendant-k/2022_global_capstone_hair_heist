@@ -41,14 +41,18 @@ class SignUpPage extends StatelessWidget {
                             prefixIcon: Icon(Icons.email),
                             hintText: 'email@example.com',
                           ),
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            _controller.updateEmail(value);
+                          },
                         ),
                         SizedBox(
                           height: 20.w,
                         ),
                         TextField(
                           style: GlobalStyle.inputText,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            _controller.updateName(value);
+                          },
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.person,
@@ -59,7 +63,9 @@ class SignUpPage extends StatelessWidget {
                         SizedBox(height: 20.w),
                         TextField(
                           style: GlobalStyle.inputText,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            _controller.updatePassword(value);
+                          },
                           obscureText: _controller.obscure.value,
                           decoration: InputDecoration(
                             hintText: 'password',
@@ -77,6 +83,9 @@ class SignUpPage extends StatelessWidget {
                         ),
                         SizedBox(height: 20.w),
                         TextField(
+                          onChanged: (value) {
+                            _controller.updateConfirmPassword(value);
+                          },
                           style: GlobalStyle.inputText,
                           obscureText: _controller.obscure.value,
                           decoration: InputDecoration(
@@ -89,7 +98,7 @@ class SignUpPage extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              // controller -> sign in
+                              _controller.signUp();
                             },
                             child: Text('Sign Up'),
                           ),
@@ -103,7 +112,7 @@ class SignUpPage extends StatelessWidget {
                   },
                   child: Icon(
                     Icons.arrow_back,
-                    size: 40.w,
+                    size: 25.w,
                   ),
                 ),
               ],
