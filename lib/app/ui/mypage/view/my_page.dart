@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
-import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
+import 'package:hair_heist/app/ui/home/controller/main_nav_idx_controller.dart';
 import 'package:hair_heist/app/ui/mypage/controller/mypage_controller.dart';
 import 'package:hair_heist/app/ui/mypage/view/edit_profile.dart';
 

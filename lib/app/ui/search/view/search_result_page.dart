@@ -106,7 +106,7 @@ class ResultItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Get to detail page with hairstyle model
-        Get.to(() => DetailPage());
+        // Get.to(() => DetailPage());
       },
       child: Material(
         color: Colors.white,

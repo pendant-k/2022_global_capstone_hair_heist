@@ -3,9 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
 import 'package:hair_heist/app/config/palette.dart';
+import 'package:hair_heist/app/data/model/hairstyle.dart';
+import 'package:hair_heist/app/data/model/user.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  const DetailPage({super.key, required this.hairStyle});
+  final HairStyle hairStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +53,9 @@ class DetailPage extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   height: 300.w,
-                  child: Image.asset(
-                    'assets/images/dummy_img.png',
-                    fit: BoxFit.fill,
+                  child: Image.network(
+                    hairStyle.images[0],
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
               ),
@@ -62,7 +65,9 @@ class DetailPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: DesignerCard(),
+              child: DesignerCard(
+                user: hairStyle.designerData,
+              ),
             ),
             SizedBox(
               height: 30.w,
@@ -70,7 +75,7 @@ class DetailPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Text(
-                'Hair Name',
+                hairStyle.name,
                 style: GlobalStyle.primaryText.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 20.sp,
@@ -83,7 +88,7 @@ class DetailPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Text(
-                'Description about this hair style from designer',
+                hairStyle.desc,
                 style: GlobalStyle.primaryText,
               ),
             ),
@@ -112,12 +117,9 @@ class DetailPage extends StatelessWidget {
                   Wrap(
                     runSpacing: 5.w,
                     spacing: 5.w,
-                    children: [
-                      DetailKeywordChip(),
-                      DetailKeywordChip(),
-                      DetailKeywordChip(),
-                      DetailKeywordChip(),
-                    ],
+                    children: hairStyle.keywords
+                        .map((e) => DetailKeywordChip(data: e))
+                        .toList(),
                   )
                 ],
               ),
@@ -132,7 +134,10 @@ class DetailPage extends StatelessWidget {
 class DetailKeywordChip extends StatelessWidget {
   const DetailKeywordChip({
     Key? key,
+    required this.data,
   }) : super(key: key);
+
+  final String data;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +146,10 @@ class DetailKeywordChip extends StatelessWidget {
         color: Color(0xffdfdfdf),
       ),
       backgroundColor: Colors.white,
-      label: Text('keyword'),
+      label: Text(
+        data,
+        style: GlobalStyle.primaryText,
+      ),
       padding: EdgeInsets.zero,
     );
   }
@@ -172,9 +180,9 @@ class CustomDivider extends StatelessWidget {
 }
 
 class DesignerCard extends StatelessWidget {
-  const DesignerCard({
-    Key? key,
-  }) : super(key: key);
+  const DesignerCard({Key? key, required this.user}) : super(key: key);
+
+  final UserData user;
 
   @override
   Widget build(BuildContext context) {
@@ -195,6 +203,9 @@ class DesignerCard extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: Colors.white,
+              backgroundImage: user.profileImgUrl != null
+                  ? NetworkImage(user.profileImgUrl!)
+                  : null,
               radius: 35,
             ),
             SizedBox(width: 20.w),
@@ -204,7 +215,7 @@ class DesignerCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Designer name',
+                  user.name,
                   style: GlobalStyle.whiteText.copyWith(
                     color: Color(0xFFF8F8F8),
                     fontSize: 16.sp,
@@ -212,17 +223,10 @@ class DesignerCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Hair shop name',
+                  user.email,
                   style: GlobalStyle.whiteText.copyWith(
                       color: Color(0xFFF8F8F8).withOpacity(0.7),
                       fontSize: 12.sp),
-                ),
-                Text(
-                  'Address',
-                  style: GlobalStyle.whiteText.copyWith(
-                    color: Color(0xFFF8F8F8).withOpacity(0.7),
-                    fontSize: 12.sp,
-                  ),
                 ),
               ],
             )

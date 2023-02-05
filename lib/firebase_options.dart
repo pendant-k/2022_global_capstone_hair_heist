@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -48,6 +45,15 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCNdKkwlPRupkjM5WLyq3xd9ItXsoGPJKc',
+    appId: '1:904431152894:web:7660e5d8b5a282869bffaf',
+    messagingSenderId: '904431152894',
+    projectId: 'hair-heist',
+    authDomain: 'hair-heist.firebaseapp.com',
+    storageBucket: 'hair-heist.appspot.com',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBus3dPwjRRFSKHwbmIT9RS5btv-UIOwLE',

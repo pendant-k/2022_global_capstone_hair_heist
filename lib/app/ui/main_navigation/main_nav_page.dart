@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:hair_heist/app/config/palette.dart';
 
 // controllers
-import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
+import 'package:hair_heist/app/ui/home/controller/main_nav_idx_controller.dart';
 import 'package:hair_heist/app/ui/home/view/home_page.dart';
 import 'package:hair_heist/app/ui/like/view/like_page.dart';
 import 'package:hair_heist/app/ui/mypage/view/designer_my_page.dart';

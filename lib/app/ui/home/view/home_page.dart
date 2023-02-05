@@ -1,27 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // configs
 import 'package:hair_heist/app/config/global_styles.dart';
-import 'package:hair_heist/app/controller/main_nav_idx_controller.dart';
+import 'package:hair_heist/app/data/repository/hairstyle_repository.dart';
+import 'package:hair_heist/app/ui/detail/view/detail_page.dart';
+import 'package:hair_heist/app/ui/home/controller/home_controller.dart';
+import 'package:hair_heist/app/ui/home/controller/main_nav_idx_controller.dart';
 
 import '../widgets/widgets.dart';
-import 'package:hair_heist/app/ui/search/view/search_page.dart';
-import 'package:hair_heist/app/ui/designer_info/view/desinger_info_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(
+      HomeController(
+        HairStylesRepository(db: FirebaseFirestore.instance),
+      ),
+    );
     final _idxController = Get.put(MainNavIndexController());
     return Container(
         width: double.infinity,
         padding: EdgeInsets.fromLTRB(20.w, 50.w, 20.w, 0),
         child: RefreshIndicator(
           onRefresh: () async {
-            print('home page refresh');
+            _controller.getEveryHairStyles();
+            print('refreshed');
           },
           child: ListView(
             children: [
@@ -55,17 +63,21 @@ class HomePage extends StatelessWidget {
 
               SizedBox(height: 30.w),
               //Images
-              Wrap(
-                spacing: 10.w,
-                runSpacing: 10.w,
-                children: [
-                  ImageBox(),
-                  ImageBox(),
-                  ImageBox(),
-                  ImageBox(),
-                  ImageBox(),
-                  ImageBox(),
-                ],
+              Obx(
+                () => Wrap(
+                  spacing: 10.w,
+                  runSpacing: 10.w,
+                  children: _controller.recentHairs.value
+                      .map((e) => GestureDetector(
+                            onTap: () {
+                              Get.to(() => DetailPage(hairStyle: e));
+                            },
+                            child: RecentHairStyle(
+                              url: e.images[0],
+                            ),
+                          ))
+                      .toList(),
+                ),
               ),
               SizedBox(height: 100.w),
             ],
@@ -74,10 +86,12 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class ImageBox extends StatelessWidget {
-  const ImageBox({
+class RecentHairStyle extends StatelessWidget {
+  const RecentHairStyle({
     Key? key,
+    required this.url,
   }) : super(key: key);
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -88,9 +102,12 @@ class ImageBox extends StatelessWidget {
       child: Container(
           width: 180.w,
           height: 180.w,
-          child: Image.asset(
-            'assets/images/dummy_img.png',
-            fit: BoxFit.fill,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+              url,
+              fit: BoxFit.fill,
+            ),
           )),
     );
   }

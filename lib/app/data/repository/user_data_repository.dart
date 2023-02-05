@@ -87,7 +87,8 @@ class UserDataRepository {
         "role": userData.role,
         "uid": userData.uuid,
       });
-      final _result = await dio.post(_url);
+      final _result = await dio.post(_url, data: _formData);
+      print(_result.data);
     } catch (e) {
       throw Exception(e);
     }

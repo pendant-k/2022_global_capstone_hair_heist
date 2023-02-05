@@ -1,123 +1,85 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hair_heist/app/data/model/user.dart';
 
 class HairStyle {
-  final String uuid;
+  final UserData designerData;
+  final String hairId;
   final String name;
-  final String url1;
-  final String url2;
-  final String? url3;
-  final String? url4;
-  final String designerId;
-  final String? modelId;
-  final int like;
-  final int dislike;
+  final String desc;
+  final String? modelEmail;
+  final List<String> images;
+  final List<String> keywords;
+
   HairStyle({
-    required this.uuid,
+    required this.designerData,
+    required this.hairId,
     required this.name,
-    required this.url1,
-    required this.url2,
-    this.url3,
-    this.url4,
-    required this.designerId,
-    this.modelId,
-    required this.like,
-    required this.dislike,
+    required this.desc,
+    this.modelEmail,
+    required this.images,
+    required this.keywords,
   });
 
   HairStyle copyWith({
-    String? uuid,
+    UserData? designerData,
+    String? hairId,
     String? name,
-    String? url1,
-    String? url2,
-    String? url3,
-    String? url4,
-    String? designerId,
-    String? modelId,
-    int? like,
-    int? dislike,
+    String? desc,
+    String? modelEmail,
+    List<String>? images,
+    List<String>? keywords,
   }) {
     return HairStyle(
-      uuid: uuid ?? this.uuid,
-      name: name ?? this.name,
-      url1: url1 ?? this.url1,
-      url2: url2 ?? this.url2,
-      url3: url3 ?? this.url3,
-      url4: url4 ?? this.url4,
-      designerId: designerId ?? this.designerId,
-      modelId: modelId ?? this.modelId,
-      like: like ?? this.like,
-      dislike: dislike ?? this.dislike,
-    );
+        designerData: designerData ?? this.designerData,
+        hairId: hairId ?? this.hairId,
+        name: name ?? this.name,
+        desc: desc ?? this.desc,
+        modelEmail: modelEmail ?? this.modelEmail,
+        images: images ?? this.images,
+        keywords: keywords ?? this.keywords);
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'uuid': uuid,
+      'designerData': designerData.toMap(),
+      'hairId': hairId,
       'name': name,
-      'url1': url1,
-      'url2': url2,
-      'url3': url3,
-      'url4': url4,
-      'designerId': designerId,
-      'modelId': modelId,
-      'like': like,
-      'dislike': dislike,
+      'desc': desc,
+      'modelEmail': modelEmail,
+      'images': images,
+      'keywords': keywords,
     };
+  }
+
+  factory HairStyle.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    return HairStyle(
+      designerData: UserData.fromMap(doc.data()!['designerData']),
+      hairId: doc.data()!['hairId'],
+      name: doc.data()!['name'],
+      desc: doc.data()!['desc'],
+      images: List<String>.from(doc.data()!['images']),
+      keywords: List<String>.from(doc.data()!['keywords']),
+    );
   }
 
   factory HairStyle.fromMap(Map<String, dynamic> map) {
     return HairStyle(
-      uuid: map['uuid'] as String,
-      name: map['name'] as String,
-      url1: map['url1'] as String,
-      url2: map['url2'] as String,
-      url3: map['url3'] != null ? map['url3'] as String : null,
-      url4: map['url4'] != null ? map['url4'] as String : null,
-      designerId: map['designerId'] as String,
-      modelId: map['modelId'] != null ? map['modelId'] as String : null,
-      like: map['like'] as int,
-      dislike: map['dislike'] as int,
-    );
+        designerData:
+            UserData.fromMap(map['designerData'] as Map<String, dynamic>),
+        hairId: map['hairId'] as String,
+        name: map['name'] as String,
+        desc: map['desc'] as String,
+        modelEmail:
+            map['modelEmail'] != null ? map['modelEmail'] as String : null,
+        images: List<String>.from(
+          (map['images'] as List<String>),
+        ),
+        keywords: List<String>.from(map['keywords'] as List<String>));
   }
 
   String toJson() => json.encode(toMap());
 
   factory HairStyle.fromJson(String source) =>
       HairStyle.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'HairStyle(uuid: $uuid, name: $name, url1: $url1, url2: $url2, url3: $url3, url4: $url4, designerId: $designerId, modelId: $modelId, like: $like, dislike: $dislike)';
-  }
-
-  @override
-  bool operator ==(covariant HairStyle other) {
-    if (identical(this, other)) return true;
-
-    return other.uuid == uuid &&
-        other.name == name &&
-        other.url1 == url1 &&
-        other.url2 == url2 &&
-        other.url3 == url3 &&
-        other.url4 == url4 &&
-        other.designerId == designerId &&
-        other.modelId == modelId &&
-        other.like == like &&
-        other.dislike == dislike;
-  }
-
-  @override
-  int get hashCode {
-    return uuid.hashCode ^
-        name.hashCode ^
-        url1.hashCode ^
-        url2.hashCode ^
-        url3.hashCode ^
-        url4.hashCode ^
-        designerId.hashCode ^
-        modelId.hashCode ^
-        like.hashCode ^
-        dislike.hashCode;
-  }
 }

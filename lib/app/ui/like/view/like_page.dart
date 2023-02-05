@@ -125,7 +125,7 @@ class FavoriteList extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Get.to(DetailPage());
+        // Get.to(DetailPage());
       },
     );
   }
