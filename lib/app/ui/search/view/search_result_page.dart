@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hair_heist/app/ui/detail/view/detail_page.dart';
+import 'package:hair_heist/app/data/model/hairstyle.dart';
+import 'package:hair_heist/app/ui/search/controller/search_controller.dart';
 
 import '../../../config/global_styles.dart';
-import '../../../config/palette.dart';
+import '../../detail/view/detail_page.dart';
 
 class SearchResultPage extends StatelessWidget {
-  const SearchResultPage({super.key});
+  const SearchResultPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SearchController>();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 120.w),
@@ -35,24 +39,25 @@ class SearchResultPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.w),
-                TextField(
-                  autocorrect: false,
-                  style: GlobalStyle.inputText,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
-                      vertical: 20.w,
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      size: 25.w,
-                    ),
-                    hintText: 'Search by keyword',
-                  ),
-                  onSubmitted: (value) {
-                    print(value);
-                  },
-                ),
+                Obx(() => TextFormField(
+                      initialValue: controller.searchKeyword.value,
+                      autocorrect: false,
+                      style: GlobalStyle.inputText,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 20.w,
+                          vertical: 20.w,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          size: 25.w,
+                        ),
+                        hintText: 'Search by keyword',
+                      ),
+                      onFieldSubmitted: (value) {
+                        controller.updateSearchKeyword(value.trim());
+                      },
+                    )),
               ],
             ),
           ),
@@ -76,17 +81,20 @@ class SearchResultPage extends StatelessWidget {
               Expanded(
                 child: RefreshIndicator(
                   onRefresh: () async {
+                    controller.getResult();
                     print('refresh search result list');
                   },
                   child: GridView.builder(
-                    itemCount: 10,
+                    itemCount: controller.resultList.value.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1 / 1.5,
                       mainAxisSpacing: 10.w,
                       crossAxisSpacing: 10.w,
                     ),
-                    itemBuilder: (context, idx) => ResultItem(),
+                    itemBuilder: (context, idx) => ResultItem(
+                      hairStyle: controller.resultList.value[idx],
+                    ),
                   ),
                 ),
               )
@@ -99,28 +107,33 @@ class SearchResultPage extends StatelessWidget {
 class ResultItem extends StatelessWidget {
   const ResultItem({
     Key? key,
+    required this.hairStyle,
   }) : super(key: key);
+
+  final HairStyle hairStyle;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // Get to detail page with hairstyle model
-        // Get.to(() => DetailPage());
+        Get.to(() => DetailPage(
+              hairStyle: hairStyle,
+            ));
       },
       child: Material(
         color: Colors.white,
         elevation: 3,
         child: Container(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: double.infinity,
                 height: 180.w,
-                child: Image.asset(
-                  'assets/images/dummy_img.png',
+                child: Image.network(
+                  hairStyle.images[0],
                   fit: BoxFit.fill,
                 ),
               ),
@@ -129,17 +142,38 @@ class ResultItem extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
-                      'hair style name',
-                      style: GlobalStyle.primaryText.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15.sp,
-                      ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          hairStyle.name,
+                          style: GlobalStyle.primaryText.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.w,
+                        ),
+                        Text(
+                          hairStyle.desc,
+                          style: GlobalStyle.secondaryText
+                              .copyWith(fontSize: 12.sp),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.w,
                     ),
                     Text(
-                      'designer',
-                      style: GlobalStyle.secondaryText,
+                      'designed by ${hairStyle.designerData.name}',
+                      style: GlobalStyle.primaryText.copyWith(
+                        fontSize: 11.sp,
+                      ),
                     ),
                   ],
                 ),

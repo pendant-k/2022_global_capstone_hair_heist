@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,8 @@ import 'package:get/get.dart';
 // configs
 import 'package:hair_heist/app/config/palette.dart';
 import 'package:hair_heist/app/config/global_styles.dart';
+import 'package:hair_heist/app/data/repository/hairstyle_repository.dart';
+import 'package:hair_heist/app/ui/search/controller/search_controller.dart';
 import 'package:hair_heist/app/ui/search/view/search_result_page.dart';
 
 class SearchPage extends StatelessWidget {
@@ -12,6 +15,8 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(
+        SearchController(HairStylesRepository(db: FirebaseFirestore.instance)));
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -44,6 +49,7 @@ class SearchPage extends StatelessWidget {
                 ),
                 onSubmitted: (value) {
                   if (value.trim().isNotEmpty) {
+                    controller.updateSearchKeyword(value.trim());
                     Get.to(() => SearchResultPage());
                   }
                 },
