@@ -1,61 +1,53 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hair_heist/app/config/global_styles.dart';
+import 'package:hair_heist/app/data/model/user.dart';
 import 'package:hair_heist/app/data/repository/authentication.dart';
+import 'package:hair_heist/app/data/repository/user_data_repository.dart';
+import 'package:hair_heist/app/ui/global_widgets/app_alert.dart';
 import 'package:hair_heist/app/ui/splash/splash.dart';
 
 class MyPageController extends GetxController {
   late final AuthRepository authRepo;
+  late final UserDataRepository userDataRepo;
 
   @override
   void onInit() {
-    super.onInit();
     authRepo = AuthRepository(auth: FirebaseAuth.instance);
+    userDataRepo = UserDataRepository(dio: Dio());
+    fetchUserData();
+    super.onInit();
+  }
+
+  Rx<UserData?> userData = Rx<UserData?>(null);
+
+  fetchUserData() async {
+    try {
+      var _mock = await userDataRepo.getUserMock();
+      // var _result = await userDataRepo.getUserByUid(authRepo.currentUser!.uid);
+      // update value from server to userData Rx value
+      // userData(_result);
+      userData(_mock);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   signOut() async {
-    Get.dialog(AlertDialog(
-      actionsPadding: EdgeInsets.only(bottom: 20.w, left: 20.w, right: 20.w),
-      contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
-      title: Text('Log out'),
-      content: Text('Are you sure to log out?'),
-      actions: [
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () async {
-              try {
-                await authRepo.signOut();
-                Get.offAll(() => SplashPage());
-                Get.snackbar('Sign Out', 'Sign out correctly');
-              } catch (e) {
-                throw Exception(e);
-              }
-            },
-            child: Text('Yes'),
-          ),
-        ),
-        SizedBox(
-          height: 10.w,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-            ),
-            onPressed: () {
-              Get.back();
-            },
-            child: Text(
-              'No',
-              style: GlobalStyle.primaryText,
-            ),
-          ),
-        )
-      ],
-    ));
+    Get.dialog(
+      AppAlertDialog(
+        onTap: () async {
+          try {
+            await authRepo.signOut();
+            Get.offAll(() => SplashPage());
+            Get.snackbar('Sign Out', 'Sign out correctly');
+          } catch (e) {
+            throw Exception(e);
+          }
+        },
+        title: 'Log out',
+        content: 'Are you sure to log-out?',
+      ),
+    );
   }
 }

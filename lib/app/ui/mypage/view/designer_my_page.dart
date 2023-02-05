@@ -19,16 +19,17 @@ class DesingerMyPage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                20.w,
-                40.w,
-                20.w,
-                40.w,
-              ),
-              child: MyPageHeader(
-                onTap: () {},
-              ),
-            ),
+                padding: EdgeInsets.fromLTRB(
+                  20.w,
+                  40.w,
+                  20.w,
+                  40.w,
+                ),
+                child: Container()
+                //  MyPageHeader(
+                //   onTap: () {},
+                // ),
+                ),
             Expanded(
               child: Container(
                 width: double.infinity,
